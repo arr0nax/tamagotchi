@@ -3,15 +3,19 @@
         private $love;
         private $health;
         private $happiness;
+        private $hunger;
         private $nutrition;
         private $medicine;
+        private $mood;
 
         function __construct() {
             $this->love = 50;
             $this->health = 50;
             $this->happiness = 50;
+            $this->hunger = 50;
             $this->nutrition = 20;
             $this->medicine = 5;
+            $this->mood = 50;
         }
 
         function getLove() {
@@ -38,6 +42,14 @@
             $this->happiness = $happiness;
         }
 
+        function getHunger() {
+            return $this->hunger;
+        }
+
+        function setHunger($hunger) {
+            $this->hunger = $hunger;
+        }
+
         function getNutrition() {
             return $this->nutrition;
         }
@@ -51,9 +63,15 @@
                 $this->nutrition -= 1;
                 $this->happiness -= 3;
                 $this->health += 5;
+                $this->hunger -= 10;
                 if ($this->health >= 100) {
                     $this->health = 100;
                     $this->happiness -= 20;
+                }
+                if ($this->hunger < 0) {
+                    $this->happiness -= -$this->hunger;
+                    $this->love -= 20;
+                    $this->health -= 10;
                 }
             }
         }
@@ -62,6 +80,7 @@
             if ($this->health > 0) {
                 $this->health -= 8;
                 $this->happiness += 8;
+                $this->hunger -=2;
                 $this->love += 4;
             }
         }
@@ -69,6 +88,7 @@
         function usePlay() {
             $this->happiness += 2;
             $this->love += 5;
+            $this->hunger += 5;
         }
 
         function useBathe() {
@@ -82,7 +102,36 @@
                 $this->happiness -= 5;
                 $this->health += 10;
                 $this->medicine -= 1;
+                $this->hunger += 5;
+                $this->love -= 10;
             }
+        }
+
+        function getMood() {
+            return $this->mood;
+        }
+
+        function setMood($mood) {
+            $this->mood = $mood;
+        }
+
+        function determineMood() {
+            $total = $this->happiness + $this->love/2 + $this->health/2;
+
+            if ($this->health < 30) {
+                return "sick";
+            } elseif ($this->hunger > 50) {
+                return "hungry";
+            } elseif ($total > 150) {
+                return "happy";
+            } elseif ($total >= 100) {
+                return "content";
+            } elseif ($total < 60) {
+                return "suicidal";
+            } elseif ($total < 100) {
+                return "sad";
+            }
+
         }
 
 

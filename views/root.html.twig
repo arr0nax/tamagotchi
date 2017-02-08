@@ -3,6 +3,11 @@
     <head>
         <meta charset="utf-8">
         <title></title>
+        <script
+        src="https://code.jquery.com/jquery-3.1.1.js"
+        integrity="sha256-16cdPddA6VdVInumRGo6IbivbERE8p7CQR3HzTBuELA="
+        crossorigin="anonymous"></script>
+        <script src='/js/scripts.php'></script>
     </head>
     <body>
         <form class="nutrition" action="/nutrition" method="post">
@@ -21,6 +26,8 @@
             <button type="submit" name="medicine">medicine</button>
         </form>
         <ul>
+            <li>Current Mood: {{ tamagotchi.determineMood }}</li>
+            <li>Appetite: {{ tamagotchi.hunger }}</li>
             <li>Health: {{ tamagotchi.health }}</li>
             <li>Love: {{ tamagotchi.love }}</li>
             <li>Happiness: {{ tamagotchi.happiness }}</li>
