@@ -1,0 +1,33 @@
+<!DOCTYPE html>
+<html>
+    <head>
+        <meta charset="utf-8">
+        <title></title>
+    </head>
+    <body>
+        <form class="nutrition" action="/nutrition" method="post">
+            <button type="submit" name="nutrition">nutrition</button>
+        </form>
+        <form class="treats" action="/treats" method="post">
+            <button type="submit" name="treats">treats</button>
+        </form>
+        <form class="play" action="/play" method="post">
+            <button type="submit" name="play">play</button>
+        </form>
+        <form class="bathe" action="/bathe" method="post">
+            <button type="submit" name="bathe">bathe</button>
+        </form>
+        <form class="medicine" action="/medicine" method="post">
+            <button type="submit" name="medicine">medicine</button>
+        </form>
+        <ul>
+            <li>Health: {{ tamagotchi.health }}</li>
+            <li>Love: {{ tamagotchi.love }}</li>
+            <li>Happiness: {{ tamagotchi.happiness }}</li>
+            <li>Remaining Food: {{ tamagotchi.getNutrition }}</li>
+        </ul>
+        <form class="restart" action="/restart" method="post">
+            <button type="submit" name="restart">restart</button>
+        </form>
+    </body>
+</html>
