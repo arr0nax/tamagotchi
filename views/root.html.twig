@@ -26,12 +26,15 @@
             <button type="submit" name="medicine">medicine</button>
         </form>
         <ul>
+            <li>Name: {{ tamagotchi.getName }}</li>
             <li>Current Mood: {{ tamagotchi.determineMood }}</li>
+            <li>Current Filth: {{ tamagotchi.filth }}</li>
             <li>Appetite: {{ tamagotchi.hunger }}</li>
             <li>Health: {{ tamagotchi.health }}</li>
             <li>Love: {{ tamagotchi.love }}</li>
             <li>Happiness: {{ tamagotchi.happiness }}</li>
             <li>Remaining Food: {{ tamagotchi.getNutrition }}</li>
+            <li>Elapsed Time: <span id='elapsedTime'></span></li>
         </ul>
         <form class="restart" action="/restart" method="post">
             <button type="submit" name="restart">restart</button>

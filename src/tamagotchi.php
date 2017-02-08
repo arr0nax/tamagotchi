@@ -1,5 +1,6 @@
 <?php
     Class Tamagotchi {
+        private $name;
         private $love;
         private $health;
         private $happiness;
@@ -7,8 +8,11 @@
         private $nutrition;
         private $medicine;
         private $mood;
+        private $start_time;
+        private $flith;
 
         function __construct() {
+            $this->name = "";
             $this->love = 50;
             $this->health = 50;
             $this->happiness = 50;
@@ -16,6 +20,15 @@
             $this->nutrition = 20;
             $this->medicine = 5;
             $this->mood = 50;
+            $this->filth = 0;
+            $this->start_time = time();
+        }
+        function getName() {
+            return $this->name;
+        }
+
+        function setName($name) {
+            $this->name = $name;
         }
 
         function getLove() {
@@ -58,6 +71,20 @@
             $this->nutrition = $nutrition;
         }
 
+        function getStartTime() {
+            return $this->start_time;
+        }
+
+        function setStartTime($start_time) {
+            $this->start_time = $start_time;
+        }
+
+        function elapsedTime() {
+            $this->filth += 1;
+            $this->hunger += 1;
+            return time() - $this->start_time;
+        }
+
         function useNutrition() {
             if ($this->nutrition > 0) {
                 $this->nutrition -= 1;
@@ -82,6 +109,7 @@
                 $this->happiness += 8;
                 $this->hunger -=2;
                 $this->love += 4;
+                $this->filth += 3;
             }
         }
 
@@ -89,12 +117,14 @@
             $this->happiness += 2;
             $this->love += 5;
             $this->hunger += 5;
+            $this->filth += 5;
         }
 
         function useBathe() {
             $this->health += 2;
             $this->happiness -= 1;
             $this->love += 2;
+            $this->filth -= 75;
         }
 
         function useMedicine() {
@@ -136,7 +166,7 @@
 
 
         function lifeDetermine($app) {
-            if ($this->health <= 0 || $this->happiness <= 0) {
+            if (($this->health <= 0 || $this->happiness <= 0)||($this->hunger > 100)) {
                 return $app['twig']->render('dead.html.twig');
             }
             else {

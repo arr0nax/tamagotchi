@@ -11,8 +11,14 @@
     $app->register(new Silex\Provider\TwigServiceProvider(), array('twig.path' => __DIR__.'/../views'
     ));
 
-    $app->get('/', function() use ($app) {
+    $app->post('/name', function () use($app) {
+        $_SESSION['tamagotchi']->setName($_POST['name']);
         return $_SESSION['tamagotchi']->lifeDetermine($app);
+
+    });
+
+    $app->get('/', function() use ($app) {
+        return $app['twig']->render('/hatch.html.twig');
     });
 
     $app->post('/nutrition', function() use ($app) {
@@ -43,6 +49,10 @@
     $app->post('/restart', function() use ($app) {
         $_SESSION['tamagotchi'] = new Tamagotchi();
         return $_SESSION['tamagotchi']->lifeDetermine($app);
+    });
+
+    $app->get('/time', function() use ($app) {
+        return $_SESSION['tamagotchi']->elapsedTime();
     });
 
     return $app;
