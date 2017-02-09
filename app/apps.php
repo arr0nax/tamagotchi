@@ -52,7 +52,9 @@
     });
 
     $app->get('/time', function() use ($app) {
-        return $_SESSION['tamagotchi']->elapsedTime();
+        $depletion = array('elapsedTime' => $_SESSION['tamagotchi']->elapsedTime(), 'filth' => $_SESSION['tamagotchi']->getFilth(), 'hunger' => $_SESSION['tamagotchi']->getHunger());
+        return json_encode($depletion);
+
     });
 
     return $app;

@@ -8,6 +8,7 @@
         integrity="sha256-16cdPddA6VdVInumRGo6IbivbERE8p7CQR3HzTBuELA="
         crossorigin="anonymous"></script>
         <script src='/js/scripts.php'></script>
+        <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0-alpha.6/css/bootstrap.min.css" integrity="sha384-rwoIResjU2yc3z8GV/NPeZWAv56rSmLldC3R/AZzGRnGxQQKnKkoFVhFQhNUwEyJ" crossorigin="anonymous">
     </head>
     <body>
         <form class="nutrition" action="/nutrition" method="post">
@@ -28,13 +29,19 @@
         <ul>
             <li>Name: {{ tamagotchi.getName }}</li>
             <li>Current Mood: {{ tamagotchi.determineMood }}</li>
-            <li>Current Filth: {{ tamagotchi.filth }}</li>
-            <li>Appetite: {{ tamagotchi.hunger }}</li>
+            <div class="progress">
+                <li>Current Filth: <span id="filth"></span></li>
+            </div>
+            <div class="progress">
+                <li>Appetite: <span id="hunger"></span></li>
+            </div>
             <li>Health: {{ tamagotchi.health }}</li>
             <li>Love: {{ tamagotchi.love }}</li>
             <li>Happiness: {{ tamagotchi.happiness }}</li>
             <li>Remaining Food: {{ tamagotchi.getNutrition }}</li>
-            <li>Elapsed Time: <span id='elapsedTime'></span></li>
+            <div class="progress">
+                <li>Elapsed Time: <span id='elapsedTime'></span></li>
+            </div>
         </ul>
         <form class="restart" action="/restart" method="post">
             <button type="submit" name="restart">restart</button>

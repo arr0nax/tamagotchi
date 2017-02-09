@@ -107,7 +107,7 @@
             if ($this->health > 0) {
                 $this->health -= 8;
                 $this->happiness += 8;
-                $this->hunger -=2;
+                $this->hunger -=1;
                 $this->love += 4;
                 $this->filth += 3;
             }
@@ -125,6 +125,9 @@
             $this->happiness -= 1;
             $this->love += 2;
             $this->filth -= 75;
+            if ($this->filth <= 0) {
+                $this->filth = 0;
+            }
         }
 
         function useMedicine() {
@@ -143,6 +146,10 @@
 
         function setMood($mood) {
             $this->mood = $mood;
+        }
+
+        function getFilth() {
+            return $this->filth;
         }
 
         function determineMood() {
